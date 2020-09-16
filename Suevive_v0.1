@@ -1,0 +1,179 @@
+package Survive_v01;
+
+import java.util.Scanner;
+
+public class main_story {
+
+	public static void main(String[] args)
+			throws InterruptedException{
+		
+		
+		int w=5, f=10, t=10;
+		int c1, c2, c3, c4, c5, c6, c7, c8, c9, c10;
+		
+		
+		write("You woke up in a forest and you don't know where you are or how you come here.. ");
+		write("What will you do?");
+		situation(w,f,t);
+		c1=choise("Look around.","");
+		
+		write("You can't find something useful.");
+		w--;
+		f--;
+		t++;
+		situation(w,f,t);
+		c2=choise("Keep looking around.","");
+		
+		write("Looks like it rained a while ago. There is water on the leaves.");
+		write("What will you do?");
+		w--;
+		f--;
+		t++;situation(w,f,t);
+		c3=choise("Look around.","Try to drink water.");		
+				if(c3==1) /*look around*/ {
+					write("You saw a fruit tree. You don't know the fruit.");//fruit poisonous
+					write("What will you do?");
+					w--;
+					f--;
+					t++;
+					situation(w,f,t);
+					c4=choise("Look around.","Eat the fruit");
+							if(c4==1) /*look around*/ {
+								write("There is water ahead. It might be saltwater or freshwater.");
+								write("What will you do?");
+								w--;
+								f--;
+								t++;
+								situation(w,f,t);
+								c5=choise("Look Around.","Drink it.");
+										if(c5==1) {
+											write("You DIED!");
+											write("You dehydrated.");
+											write("You can survive for 5 hour.");
+											
+										}
+										else if(c5==2) {
+											
+										}
+							}
+							else if(c4==2) /*eat fruit. you poisoned. you lose 2 water.*/ {
+								write("You were poisoned. You lose 2 food for 2 round.");
+								f=f-2;
+								t++;
+								situation(w,f,t);
+								c6 = choise("Look around","");
+										if(c6==1) {
+											write("You are exhausted. Poisen is tiring you.");
+											write("You can's see forward perfectly but you think you see water ahead. ");
+											write("What will you do?");
+											w--;
+											f=f-2;
+											t++;
+											situation(w,f,t);
+											c7 = choise("Look Around","Go thru water");
+													if(c7==1) {
+														//DEAD
+													}
+													else if(c7==2) {
+														
+													}
+										}
+							}
+				}
+				else if(c3==2) {
+					write("You collect water for 1 hour. You just drink a sip of water. Now you looking around.");
+					w++;
+					f=f-2;
+					t=t+2;
+					situation(w,f,t);
+					Thread.sleep(100);
+					write("You can't find something useful.");
+					w--;
+					f--;
+					t++;
+					situation(w,f,t);
+					c8=choise("Keep looking around.","");
+							if(c8==1) {
+								write("You saw a fruit tree. You don't know the fruit.");//fruit poisonous
+								write("What will you do?");
+								w--;
+								f--;
+								t++;
+								situation(w,f,t);
+								c9=choise("Look around.","Eat it.");
+										if(c9==1) {
+											write("There is water ahead. It might be saltwater or freshwater.");
+											write("What will you do?");
+											w--;
+											f--;
+											t++;
+											situation(w,f,t);
+											c10=choise("Look Around.","Drink it.");
+													if(c10==1) {
+														write("You DIED!");
+														write("You dehydrated.");
+														write("You can survive for 7 hour.");
+														
+													}
+													else if(c10==2) {
+														
+													}
+										}
+										else if(c9==2) {
+											//zehirlenme  f=10  w=3
+											write("What a beatiful juicy fruit. You're full.");
+											f=10;
+											w++;
+											t++;
+											situation(w,f,t);
+											write("You're little thirsty but there is no water around.");
+											
+										}
+							}
+					}
+		
+		
+			 
+		
+		
+
+	}
+	public static void write(String a) 
+		throws InterruptedException{
+			for(int s1 = 0; s1<a.length();s1++ ) {
+				System.out.print(a.charAt(s1));
+				//Thread.sleep(40);
+				}
+			System.out.println();
+}
+	public static int choise(String a, String b) 
+			throws InterruptedException{
+		Scanner scan = new Scanner(System.in);
+		if(b=="") {
+			write("1-"+a);
+		}
+		else {
+		write("1-"+a+"            2-"+b);
+		}
+		int c;
+		c = scan.nextInt();
+		return c;
+	}
+	public static void situation(int a, int b, int c) 
+			throws InterruptedException{
+		if(a==1) { 
+			write("Water enough for " + a + " hour.");		
+		}
+		else {
+		write("Water enough for " + a + " hours.");
+		}
+		if(b==1) {
+			write("Food enough for "+b+" hour.");		
+		}
+		else {
+			write("Food enough for "+b+" hours.");
+		}
+		write("Time is: "+c+":00");
+		
+	}
+}
